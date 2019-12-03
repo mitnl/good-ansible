@@ -1,0 +1,28 @@
+# "Good ansible"
+# for Advanced Deployment with Red Hat Ansible Automation
+# "Frontend" tasks
+---
+- name: Install HTTPie
+  package:
+    name: httpie
+    state: latest
+
+- name: Install HAProxy
+  package:
+    name: haproxy
+    state: latest
+
+- name: Enable HAProxy
+  service:
+    name: haproxy
+    enabled: yes
+
+- name: Configure HAProxy
+  template:
+    src: roles/frontend/files/haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: restart HAProxy
+  service:
+    name: haproxy
+    state: restarted

@@ -1,0 +1,29 @@
+# "Good ansible"
+# for Advanced Deployment with Red Hat Ansible Automation
+# app.yml
+
+- name: Install Tomcat
+  package:
+    name: tomcat
+    state: latest
+
+- name: Enable Tomcat
+  service:
+    name: tomcat
+    enabled: yes
+
+- name: Create Ansible Tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: Copy index.html Jinja 2 template to Ansible Tomcat directory
+  template:
+    src: roles/app/files/index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+
+- name: Start Tomcat
+  service:
+    name: tomcat
+    state: started

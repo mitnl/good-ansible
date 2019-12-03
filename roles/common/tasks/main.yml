@@ -1,0 +1,10 @@
+# "Good ansible"
+# for Advanced Deployment with Red Hat Ansible Automation
+# "Common"
+---
+
+- name: Enable repositories
+  template:
+    src: roles/common/files/open_three-tier-app.repo
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644

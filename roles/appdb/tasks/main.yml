@@ -1,0 +1,18 @@
+# "Good ansible"
+# for Advanced Deployment with Red Hat Ansible Automation
+# appdbs.yml
+
+- name: Install PostgreSQL
+  package:
+    name: postgresql-server
+    state: latest
+
+- name: Enable PostgreSQL
+  service:
+    name: postgresql
+    enabled: yes
+
+- name: Start PostgreSQL
+  service:
+    name: postgresql
+    state: started

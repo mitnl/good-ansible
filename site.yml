@@ -1,0 +1,27 @@
+# "Good ansible"
+# for Advanced Deployment with Red Hat Ansible Automation
+# site.yml
+
+- name: Common setup tasks
+  hosts: all
+  roles:
+    - name: common
+      tags: common
+
+- name: Frontend setup tasks
+  hosts: frontends
+  roles:
+    - name: frontend
+      tags: frontend
+
+- name: DB setup tasks
+  hosts: appdbs
+  roles:
+    - name: appdb
+      tags: appdb
+
+- name: App setup tasks
+  hosts: apps
+  roles:
+    - name: app
+      tags: app
